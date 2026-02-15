@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Juan",
+    "lastName": "Pérez",
+    "phone": "1234567890",
+    "isFavorite": false
+  },
+  {
+    "id": 2,
+    "name": "María",
+    "lastName": "González",
+    "phone": "0987654321",
+    "isFavorite": false
+  },
+  {
+    "id": 3,
+    "name": "Carlos",
+    "lastName": "López",
+    "phone": "5555555555",
+    "isFavorite": false
+  }
+]

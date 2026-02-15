@@ -1,9 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ContactList from './components/ContactList'
 import './App.css'
 
 function App() {
   const [contacts, setContacts] = useState([])
+
+  useEffect(() => {
+    const loadContacts = async () => {
+      try {
+        const response = await fetch('/contacts.json')
+        const loadedContacts = await response.json()
+        setContacts(loadedContacts)
+      } catch (error) {
+        console.error('Error al cargar los contactos:', error)
+      }
+    }
+    
+    loadContacts()
+  }, [])
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -35,7 +49,8 @@ function App() {
       id: Date.now(),
       name: formData.name.trim(),
       lastName: formData.lastName.trim(),
-      phone: formData.phone.trim()
+      phone: formData.phone.trim(),
+      isFavorite: false
     }
 
     setContacts(prev => [...prev, newContact])
@@ -46,6 +61,15 @@ function App() {
     })
   }
 
+  const handleDeleteContact = (id) => {
+    setContacts(prev => prev.filter(contact => contact.id !== id))
+  }
+
+  const handleToggleFavorite = (id) => {
+    setContacts(prev => prev.map(contact =>
+      contact.id === id ? { ...contact, isFavorite: !contact.isFavorite } : contact
+    ))
+  }
 
   return (
     <div className="app-container">
@@ -55,7 +79,6 @@ function App() {
       </header>
 
       <div className="app-content">
-        {/* Formulario para agregar contacto */}
         <section className="form-section">
           <h2>Agregar Nuevo Contacto</h2>
           <form onSubmit={handleAddContact} className="contact-form">
@@ -67,7 +90,7 @@ function App() {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                placeholder="Ej: Papi"
+                placeholder="Ej: Richard"
               />
             </div>
 
@@ -91,7 +114,7 @@ function App() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                placeholder="Ej: +503 1234-5678"
+                placeholder="Ej: 7234-5678"
               />
             </div>
 
@@ -101,9 +124,10 @@ function App() {
           </form>
         </section>
 
-        {/* Lista de contactos */}
         <ContactList
           contacts={contacts}
+          onDeleteContact={handleDeleteContact}
+          onToggleFavorite={handleToggleFavorite}
         />
       </div>
     </div>

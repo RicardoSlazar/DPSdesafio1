@@ -1,6 +1,6 @@
 .contact-card {
-  background: #F5EFE7;
-  border: 2px solid #D4A574;
+  background: #ECEFF1;
+  border: 2px solid #64B5F6;
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 10px;
@@ -8,14 +8,40 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(84, 56, 19, 0.1);
+  box-shadow: 0 2px 4px rgba(13, 71, 161, 0.1);
+  position: relative;
+}
+
+.contact-card.favorite {
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  border: 2px solid #1976D2;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
 }
 
 .contact-card:hover {
-  box-shadow: 0 4px 8px rgba(84, 56, 19, 0.2);
+  box-shadow: 0 4px 8px rgba(13, 71, 161, 0.2);
   transform: translateY(-2px);
-  border-color: #8B6F47;
-  background: linear-gradient(135deg, #F5EFE7 0%, #E8D4BF 100%);
+  border-color: #1976D2;
+  background: linear-gradient(135deg, #ECEFF1 0%, #CFE9F3 100%);
+}
+
+.contact-card.favorite:hover {
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  border-color: #0D47A1;
+}
+
+.favorite-badge {
+  position: absolute;
+  top: -12px;
+  left: 15px;
+  background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(13, 71, 161, 0.4);
 }
 
 .contact-info {
@@ -27,13 +53,78 @@
 .contact-name {
   font-size: 18px;
   font-weight: bold;
-  color: #543813;
+  color: #0D47A1;
   margin-bottom: 5px;
 }
 
 .contact-phone {
   font-size: 14px;
-  color: #8B6F47;
+  color: #1565C0;
   margin-bottom: 5px;
   font-weight: 500;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: 15px;
+}
+
+.btn-favorite,
+.btn-delete {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-favorite {
+  background: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
+  color: #0D47A1;
+  border: 2px solid #42A5F5;
+}
+
+.btn-favorite:hover {
+  background: linear-gradient(135deg, #42A5F5 0%, #1976D2 100%);
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
+}
+
+.btn-favorite.is-favorite {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border-color: #FFA500;
+  color: #543813;
+}
+
+.btn-favorite.is-favorite:hover {
+  background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+  box-shadow: 0 2px 8px rgba(255, 165, 0, 0.4);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #FFE8E8 0%, #FFD4D4 100%);
+  border: 2px solid #E8A4A4;
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, #FF9999 0%, #FF6666 100%);
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(255, 102, 102, 0.3);
+}
+
+.btn-delete:active {
+  transform: scale(0.95);
+}
+
+.btn-favorite:active,
+.btn-delete:active {
+  transform: scale(0.95);
 }
